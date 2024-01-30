@@ -3,6 +3,38 @@
 #include <random>
 using namespace std;
 
+vector<vector<string>> findSolution(vector<vector<string>> &sudokuPlayground)
+{
+    for (int x = 0; x < 9; x++)
+    {
+        for (int num = 1; num <= 9; num++)
+        {
+            for (int y = 0; y < 9; y++)
+            {
+                if (sudokuPlayground[x][y] == to_string(num))
+                {
+                    break;
+                }
+                else if (sudokuPlayground[x][y] == "-")
+                {
+                    sudokuPlayground[x][y] = to_string(num);
+                    break;
+                }
+            }
+        }
+    }
+    // int y = 0;
+    // int num = 1;
+    // for (int x = 0; x < 9; x++)
+    // {
+    //     while (/* condition */)
+    //     {
+    //         /* code */
+    //     }
+    // }
+    return sudokuPlayground;
+}
+
 void inputSudoku(vector<vector<string>> &sudokuPlayground)
 {
     random_device rd;
@@ -32,28 +64,20 @@ void printSudoku(vector<vector<string>> sudokuPlayground)
     }
 }
 
-void printSolution(int x, int y, int number, vector<vector<string>> sudokuPlayground)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        for (int j = 0; j < 9; j++)
-        {
-            if (sudokuPlayground[i][j] == to_string(number))
-            {
-                x = j;
-                y = i;
-            }
-        }
-    }
-    cout << "x: " << x << " y: " << y << " number: " << number << endl;
-}
-
 int main()
 {
     vector<vector<string>> sudokuPlayground(9, vector<string>(9, "-"));
     inputSudoku(sudokuPlayground);
+    // first sudoku card without filling
+    cout << "Before" << endl;
+    cout << endl;
     printSudoku(sudokuPlayground);
-    printSolution(1, 2, 3, sudokuPlayground);
+    cout << "-----------------" << endl;
+    findSolution(sudokuPlayground);
+    // sudoku card with filling
+    cout << "After" << endl;
+    cout << endl;
+    printSudoku(sudokuPlayground);
 
     return 0;
 }
