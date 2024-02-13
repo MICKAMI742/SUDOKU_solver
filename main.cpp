@@ -3,35 +3,29 @@
 #include <random>
 using namespace std;
 
-vector<vector<string>> findSolution(vector<vector<string>> &sudokuPlayground)
+struct Coordinates
 {
-    for (int x = 0; x < 9; x++)
+    int x;
+    int y;
+};
+
+Coordinates returnEmptyLocation(vector<vector<string>> &sudokuPlayground)
+{
+    for (int i = 0; i < 9; i++)
     {
-        for (int num = 1; num <= 9; num++)
+        for (int j = 0; j < 9; j++)
         {
-            for (int y = 0; y < 9; y++)
+            if (sudokuPlayground[i][j] == "-")
             {
-                if (sudokuPlayground[x][y] == to_string(num))
-                {
-                    break;
-                }
-                else if (sudokuPlayground[x][y] == "-")
-                {
-                    sudokuPlayground[x][y] = to_string(num);
-                    break;
-                }
+                return {i, j};
             }
         }
     }
-    // int y = 0;
-    // int num = 1;
-    // for (int x = 0; x < 9; x++)
-    // {
-    //     while (/* condition */)
-    //     {
-    //         /* code */
-    //     }
-    // }
+}
+
+vector<vector<string>> findSolution(vector<vector<string>> &sudokuPlayground)
+{
+
     return sudokuPlayground;
 }
 
